@@ -18,7 +18,8 @@ export default function Task(props) {
     if (formAction === "save") {
       if (collapsed) {
         setCollapsed(false);
-      } else {
+      } 
+      else {
         let newTask = {
           id: task.id,
           title: event.target.elements.title.value,
@@ -42,7 +43,7 @@ export default function Task(props) {
     let newStatus = "";
 
     if (task.status === "In Progress") {
-      newStatus = "Backlog";
+      newStatus = "Not Started";
     } else if (task.status === "Done") {
       newStatus = "In Progress";
     }
@@ -55,7 +56,7 @@ export default function Task(props) {
   function handleMoveRight() {
     let newStatus = "";
 
-    if (task.status === "Backlog") {
+    if (task.status === "Not Started") {
       newStatus = "In Progress";
     } else if (task.status === "In Progress") {
       newStatus = "Done";
@@ -76,7 +77,7 @@ export default function Task(props) {
           type="text"
           className="title input"
           name="title"
-          placeholder="Enter Title"
+          placeholder="Task Name"
           disabled={collapsed}
           defaultValue={task.title}
         />
@@ -126,7 +127,7 @@ export default function Task(props) {
           }}
           className="button"
         >
-          {collapsed ? "Edit" : "Save"}
+          {collapsed ? "View" : "Save"}
         </button>
         {collapsed && (
           <button
