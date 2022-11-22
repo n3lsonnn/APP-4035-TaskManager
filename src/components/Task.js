@@ -24,6 +24,7 @@ export default function Task(props) {
           id: task.id,
           title: event.target.elements.title.value,
           description: event.target.elements.description.value,
+          date: event.target.elements.date.value,
           urgency: urgencyLevel,
           status: task.status,
           isCollapsed: true,
@@ -87,6 +88,14 @@ export default function Task(props) {
           name="description"
           placeholder="Enter Description"
           defaultValue={task.description}
+        />
+        <input
+          type="date"
+          className="description input"
+          name="date"
+          placeholder="End date"
+          disabled={collapsed}
+          defaultValue={task.date}
         />
         <div className="urgencyLabels">
           <label className={`low ${urgencyLevel === "low" ? "selected" : ""}`}>

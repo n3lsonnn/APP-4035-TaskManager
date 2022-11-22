@@ -25,6 +25,7 @@ function App() {
         id: newTaskId,
         title: "",
         description: "",
+        date: "",
         urgency: "",
         status: status,
       },
