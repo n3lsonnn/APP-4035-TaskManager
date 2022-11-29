@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
 @import "properties.scss";
 
 * {
@@ -7,9 +7,9 @@
 }
 
 body {
-  font-family: "Kanit", sans-serif;
-  background-color: $blue;
-  color: $white;
+  font-family: 'Roboto', sans-serif;
+  background-color:  #f5f5f5;
+  color: black;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,7 +24,7 @@ h1 {
 main {
   display: flex;
   flex-direction: column;
-  border: 1px solid $green;
+  border: 1px solid transparent;
   align-items: center;
   width: fit-content;
 }
@@ -37,35 +37,35 @@ section {
 
 .button {
   border: 1px solid $gold;
-  text-transform: uppercase;
   width: fit-content;
   padding: 0.3rem 1.5rem;
-  background-color: $green;
-  border-color: $green;
+  background-color: #DCE3E2;
+  border-color: transparent;
   color: $blue;
   font-weight: 500;
-  font-family: "Kanit", sans-serif;
+  font-family: 'Roboto', sans-serif;
   border-radius: 0.25rem;
   font-size: 1rem;
   margin-right: 0.25rem;
 
   &:hover {
-    background-color: $highlight;
-    border-color: $highlight;
+    background-color: #CDCDCD;
+    border-color: #CDCDCD;
     cursor: pointer;
   }
 
   &:focus {
     outline: none;
-    border-color: $highlight;
-    background-color: $highlight;
-    color: $white;
+    border-color: #DCE3E2;
+    background-color: #DCE3E2;
+    color: black;
   }
 
   &.addTask {
-    font-size: 3rem;
+    font-size: 2rem;
     padding: 0 0 0.4rem 0;
-    border-radius: 50%;
+    background-color: transparent;
+    border: none;
     width: 2.5rem;
     height: 2.5rem;
     line-height: 1rem;
@@ -77,14 +77,16 @@ section {
     padding: 0.5rem 0.5rem;
     margin-bottom: 0;
     line-height: 1rem;
+    background-color: transparent;
+    border: none;
   }
 
   &.delete {
-    background-color: $pink;
+    background-color: #F85454;
     border-color: $pink;
 
     &:hover {
-      background-color: $red;
+      background-color: #C30404;
       border-color: $red;
     }
   }

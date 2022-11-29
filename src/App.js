@@ -88,7 +88,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Task Management</h1>
+      <h1>Task Management Board</h1>
       <main>
         <section>
           <StatusLine
