@@ -1,10 +1,39 @@
 import { useState, useEffect } from "react";
-import StatusLine from './components/StatusLine'
 import './styles/app.scss';
+import "./styles/task.scss";
 import React from 'react'
+import { Button, Progress } from 'antd';
+import { BulbTwoTone, FrownTwoTone } from '@ant-design/icons';
+
+import StatusLine from './components/StatusLine'
+import StatusLineTwo from "./components/StatusLineTwo";
+import StatusLineThree from "./components/StatusLineThree";
 
 
 function App() {
+  
+  const [percent, setPercent] = useState(0);
+  
+  const increase = () => {
+    setPercent((prevPercent) => {
+      const newPercent = prevPercent + 12.5;
+      if (newPercent > 100) {
+        return 100;
+      }
+      return newPercent;
+    });
+  };
+  
+  const decline = () => {
+    setPercent((prevPercent) => {
+      const newPercent = prevPercent - 12.5;
+      if (newPercent < 0) {
+        return 0;
+      }
+      return newPercent;
+    });
+  };
+
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
@@ -100,7 +129,7 @@ function App() {
             moveTask={moveTask}
             status="Not Started"
           />
-          <StatusLine
+          <StatusLineTwo
             tasks={tasks}
             addEmptyTask={addEmptyTask}
             addTask={addTask}
@@ -108,7 +137,7 @@ function App() {
             moveTask={moveTask}
             status="In Progress"
           />
-          <StatusLine
+          <StatusLineThree
             tasks={tasks}
             addEmptyTask={addEmptyTask}
             addTask={addTask}
@@ -118,7 +147,13 @@ function App() {
           />
         </section>
       </main>
-      
+      <div>
+      <Progress percent={percent} />
+  
+      <Button onClick={increase} className="button delete" icon={<FrownTwoTone />} />
+      <Button onClick={increase} className="button delete" icon={<BulbTwoTone />} />
+
+      </div>
     </div>
   );
 }

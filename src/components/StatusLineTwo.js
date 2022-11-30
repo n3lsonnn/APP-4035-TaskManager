@@ -1,10 +1,8 @@
 import "../styles/statusline.scss";
 import Task from './Task';
 import React from 'react';
-import { Button } from 'antd';
-import { PlusCircleTwoTone } from '@ant-design/icons';
 
-export default function StatusLine(props) {
+export default function StatusLineTwo(props) {
   const { status, tasks, addTask, deleteTask, addEmptyTask, moveTask } = props;
 
   let taskList, tasksForStatus;
@@ -37,8 +35,6 @@ export default function StatusLine(props) {
     <div className="statusLine">
       <h3>{status}</h3>
       {taskList}
-      <Button onClick={handleAddEmpty} className="button addTask" icon={<PlusCircleTwoTone twoToneColor="#52c41a"/>}/>
-      
     </div>
   );
 }
