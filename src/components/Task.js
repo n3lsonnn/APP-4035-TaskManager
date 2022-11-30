@@ -1,5 +1,9 @@
 import "../styles/task.scss";
 import { useState } from "react";
+import React from 'react';
+import { LeftCircleTwoTone, RightCircleTwoTone, EditTwoTone,
+ DeleteTwoTone, CheckCircleTwoTone } from '@ant-design/icons';
+import { Button } from 'antd';
 
 export default function Task(props) {
   const { addTask, deleteTask, moveTask, task } = props;
@@ -7,6 +11,42 @@ export default function Task(props) {
   const [urgencyLevel, setUrgencyLevel] = useState(task.urgency);
   const [collapsed, setCollapsed] = useState(task.isCollapsed);
   const [formAction, setFormAction] = useState("");
+
+  const [data, setTask] = useState({});
+  const [ setSubmitted ] = useState(false);
+
+  const serverHost = 'http://localhost:3000';
+
+  async function addtask(task) {
+    const url = serverHost + '/task';
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify(task)
+    }
+    const response = await fetch(url, options);
+        if (response.status === 200) {
+            setSubmitted(true);
+    }
+    
+  }
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+
+    const currentInputFieldData = {
+        [name]: value
+    }
+
+    const updatedData = {
+        ...data,
+        ...currentInputFieldData
+    }
+    setTask(updatedData);
+  }
 
   function setUrgency(event) {
     setUrgencyLevel(event.target.attributes.urgency.value);
@@ -32,6 +72,7 @@ export default function Task(props) {
 
         addTask(newTask);
         setCollapsed(true);
+        addTask(data);
       }
     }
 
@@ -45,13 +86,15 @@ export default function Task(props) {
 
     if (task.status === "In Progress") {
       newStatus = "Not Started";
-    } else if (task.status === "Done") {
+    } 
+    else if (task.status === "Done") {
       newStatus = "In Progress";
     }
 
     if (newStatus !== "") {
       moveTask(task.id, newStatus);
     }
+
   }
 
   function handleMoveRight() {
@@ -59,20 +102,21 @@ export default function Task(props) {
 
     if (task.status === "Not Started") {
       newStatus = "In Progress";
-    } else if (task.status === "In Progress") {
+    } 
+    else if (task.status === "In Progress") {
       newStatus = "Done";
     }
 
     if (newStatus !== "") {
       moveTask(task.id, newStatus);
     }
+
   }
 
   return (
     <div className={`task ${collapsed ? "collapsedTask" : ""}`}>
-      <button onClick={handleMoveLeft} className="button moveTask">
-        &#171;
-      </button>
+      <Button onClick={handleMoveLeft} className="button moveTask" icon={<LeftCircleTwoTone />}/>
+        
       <form onSubmit={handleSubmit} className={collapsed ? "collapsed" : ""}>
         <input
           type="text"
@@ -81,6 +125,7 @@ export default function Task(props) {
           placeholder="Task Name"
           disabled={collapsed}
           defaultValue={task.title}
+          onChange={handleChange}
         />
         <textarea
           rows="2"
@@ -88,6 +133,7 @@ export default function Task(props) {
           name="description"
           placeholder="Enter Description"
           defaultValue={task.description}
+          onChange={handleChange}
         />
         <input
           type="date"
@@ -96,7 +142,9 @@ export default function Task(props) {
           placeholder="End date"
           disabled={collapsed}
           defaultValue={task.date}
+          onChange={handleChange}
         />
+        <br/>
         <div className="urgencyLabels">
           <label className={`low ${urgencyLevel === "low" ? "selected" : ""}`}>
             <input
@@ -134,9 +182,9 @@ export default function Task(props) {
           onClick={() => {
             setFormAction("save");
           }}
-          className="button"
+          className="button delete"
         >
-          {collapsed ? "View" : "Save"}
+          {collapsed ? <EditTwoTone /> : <CheckCircleTwoTone />}
         </button>
         {collapsed && (
           <button
@@ -144,14 +192,17 @@ export default function Task(props) {
               setFormAction("delete");
             }}
             className="button delete"
+            
           >
-            x
+          {<DeleteTwoTone twoToneColor="#eb2f96"/>} 
           </button>
+          
         )}
       </form>
-      <button onClick={handleMoveRight} className="button moveTask">
-        &#187;
-      </button>
+      <Button onClick={handleMoveRight} className="button moveTask" icon={<RightCircleTwoTone />}/>
+
+      
     </div>
+
   );
 }

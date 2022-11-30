@@ -82,12 +82,20 @@ section {
   }
 
   &.delete {
-    background-color: #F85454;
-    border-color: $pink;
+    font-size: 1.8rem;
+    padding: 0.5rem 0.5rem;
+    margin-bottom: 0;
+    line-height: 1rem;
+    background-color: transparent;
+    border: none;
 
     &:hover {
-      background-color: #C30404;
-      border-color: $red;
+      font-size: 1.8rem;
+      padding: 0.5rem 0.5rem;
+      margin-bottom: 0;
+      line-height: 1rem;
+      background-color: transparent;
+      border: none;
     }
   }
 }

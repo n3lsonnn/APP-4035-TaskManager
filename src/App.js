@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import StatusLine from './components/StatusLine'
 import './styles/app.scss';
+import React from 'react'
 
 
 function App() {

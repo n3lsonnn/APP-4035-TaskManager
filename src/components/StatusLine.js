@@ -1,5 +1,6 @@
 import "../styles/statusline.scss";
 import Task from './Task';
+import React from 'react';
 
 export default function StatusLine(props) {
   const { status, tasks, addTask, deleteTask, addEmptyTask, moveTask } = props;

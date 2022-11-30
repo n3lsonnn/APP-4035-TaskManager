@@ -22,7 +22,7 @@
     flex-direction: column;
     text-align: center;
     align-items: center;
-    margin: 0 0.25rem;
+    margin: 0.35rem 0.25rem;
 
     .input {
       background-color: transparent;
@@ -103,7 +103,7 @@
         }
 
         &.low {
-          background-color: $green;
+          background-color: #00F1BF;
 
           &:hover {
             cursor: pointer;
@@ -113,7 +113,7 @@
         }
 
         &.medium {
-          background-color: $yellow;
+          background-color: #FCFF8E;
 
           &:hover {
             cursor: pointer;
@@ -170,7 +170,12 @@
         padding: 0.025rem 0.5rem;
 
         &.moveTask {
-          background-color: red;
+          font-size: 1.5rem;
+          padding: 0.5rem 0.5rem;
+          margin-bottom: 0;
+          line-height: 1rem;
+          background-color: transparent;
+          border: none;
         }
       }
 
